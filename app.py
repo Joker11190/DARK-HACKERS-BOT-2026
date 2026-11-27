@@ -2,6 +2,13 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
+app.config.update(
+    DEBUG=False,
+    SESSION_COOKIE_SECURE=True,
+    SESSION_COOKIE_HTTPONLY=True,
+    SESSION_COOKIE_SAMESITE="Lax"
+)
+
 @app.route("/")
 def home():
     return render_template("index.html")
