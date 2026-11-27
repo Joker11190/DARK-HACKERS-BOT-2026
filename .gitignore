@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+app_backup.py
+python_lab_backup.py
+templates/tools_backup.html
+python_lab.py

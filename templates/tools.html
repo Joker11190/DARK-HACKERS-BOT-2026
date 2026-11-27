@@ -1,0 +1,281 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DARK HACKERS TOOLS</title>
+<style>
+body{background:#080808;color:white;font-family:Arial;padding:15px}
+h1{text-align:center;color:#ff2222}
+.card{background:#171717;border:1px solid #7b1111;padding:18px;border-radius:12px;margin:15px 0}
+input,textarea{width:100%;box-sizing:border-box;background:#080808;color:white;border:1px solid #8c2222;padding:12px;border-radius:8px;margin:8px 0}
+button{background:#b00000;color:white;border:0;padding:12px;border-radius:8px;margin:5px 0;width:100%}
+.result{color:#62ff91;overflow-wrap:anywhere}
+</style>
+</head>
+<body>
+<h1>💀 DARK HACKERS</h1>
+<p style="text-align:center">TOOLS CENTER</p>
+
+<div class="card">
+<h3>🔐 Password Generator</h3>
+<input id="len" type="number" value="16" min="8" max="64">
+<button onclick="generate()">إنشاء كلمة مرور</button>
+<p id="pass" class="result"></p>
+</div>
+
+<div class="card">
+<h3>🛡️ Password Strength</h3>
+<input id="password" type="password" placeholder="اكتب كلمة المرور">
+<button onclick="checkPass()">فحص القوة</button>
+<p id="strength" class="result"></p>
+</div>
+
+<div class="card">
+<h3>🔄 Base64 Encoder / Decoder</h3>
+<textarea id="txt" placeholder="اكتب النص هنا"></textarea>
+<button onclick="encode()">تشفير Base64</button>
+<button onclick="decode()">فك Base64</button>
+<p id="output" class="result"></p>
+</div>
+
+<div class="card">
+<h3>🌐 Network Information</h3>
+<button onclick="network()">عرض معلومات الاتصال</button>
+<p id="net" class="result"></p>
+</div>
+
+<script>
+function generate(){
+ const n=Math.max(8,Math.min(64,Number(document.getElementById('len').value)||16));
+ const chars="ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%";
+ const bytes=crypto.getRandomValues(new Uint8Array(n));
+ let result="";
+ for(let b of bytes) result+=chars[b%chars.length];
+ document.getElementById('pass').textContent=result;
+}
+function checkPass(){
+ const p=document.getElementById('password').value;
+ let s=0;
+ if(p.length>=12)s++;
+ if(/[A-Z]/.test(p))s++;
+ if(/[a-z]/.test(p))s++;
+ if(/[0-9]/.test(p))s++;
+ if(/[^A-Za-z0-9]/.test(p))s++;
+ document.getElementById('strength').textContent=
+ p.length===0?"اكتب كلمة مرور أولاً":s<=2?"ضعيفة":s<=3?"متوسطة":"قوية حسب المعايير الأساسية";
+}
+function encode(){
+ try{
+ const t=document.getElementById('txt').value;
+ document.getElementById('output').textContent=
+ btoa(unescape(encodeURIComponent(t)));
+ }catch(e){document.getElementById('output').textContent="تعذر التحويل";}
+}
+function decode(){
+ try{
+ const t=document.getElementById('txt').value;
+ document.getElementById('output').textContent=
+ decodeURIComponent(escape(atob(t)));
+ }catch(e){document.getElementById('output').textContent="النص غير صالح";}
+}
+function network(){
+ document.getElementById('net').textContent=
+ "حالة الاتصال: "+(navigator.onLine?"متصل":"غير متصل")+
+ " | نوع الاتصال: "+(navigator.connection?.effectiveType||"غير متاح");
+}
+</script>
+
+<div class="card" id="pythonLab">
+<h3>🐍 PYTHON LAB</h3>
+<p>اكتب كود Python وجربه بنفسك</p>
+<textarea id="pycode" rows="8" dir="ltr" placeholder="print(10 + 20)"></textarea>
+<button onclick="runPython()">▶ تشغيل الكود</button>
+<button onclick="copyPython()">📋 نسخ الكود</button>
+<button onclick="document.getElementById('pycode').value=''">🗑 مسح الكود</button>
+<h4>النتيجة:</h4>
+<pre id="pyresult" class="result">في انتظار التشغيل...</pre>
+</div>
+
+<script>
+async function runPython(){
+ const code=document.getElementById('pycode').value;
+ const out=document.getElementById('pyresult');
+ out.textContent='جاري التشغيل...';
+ try{
+  const response=await fetch('/run-python',{
+   method:'POST',
+   headers:{'Content-Type':'application/json'},
+   body:JSON.stringify({code})
+  });
+  const data=await response.json();
+  out.textContent=data.result;
+ }catch(e){
+  out.textContent='تعذر الاتصال بالسيرفر';
+ }
+}
+async function copyPython(){
+ const code=document.getElementById('pycode').value;
+ try{
+  await navigator.clipboard.writeText(code);
+  alert('تم نسخ الكود');
+ }catch(e){
+  alert('تعذر النسخ');
+ }
+}
+</script>
+
+</body>
+</html>
+	
+
+<div class="card" id="termuxAcademy">
+<style>
+.lesson-btn {
+ background:#260707;
+ border:1px solid #bb1111;
+ color:white;
+ padding:14px;
+ border-radius:9px;
+ margin:7px 0;
+ text-align:right;
+ cursor:pointer;
+}
+.lesson-content {
+ display:none;
+ background:#0b0b0b;
+ border:1px solid #8c2222;
+ border-radius:10px;
+ padding:15px;
+ margin-top:10px;
+ line-height:1.9;
+}
+.lesson-content pre {
+ direction:ltr;
+ text-align:left;
+ color:#62ff91;
+ background:#151515;
+ padding:12px;
+ overflow-x:auto;
+ border-radius:8px;
+}
+</style>
+
+<h2 style="color:#ff2222;text-align:center">💀 TERMUX ACADEMY</h2>
+<p style="text-align:center">أكاديمية DARK HACKERS التعليمية</p>
+
+<button class="lesson-btn" onclick="openLesson(1)">📘 الدرس الأول: مقدمة Termux</button>
+<div class="lesson-content" id="lesson1">
+<h3>أهلاً يا شباب DARK HACKERS ❤️</h3>
+النهارده هنبدأ أول خطوة لينا في عالم Termux.
+أنا هشرحلكم من الصفر، وهنطبق مع بعض خطوة بخطوة.
+
+<h4>يعني إيه Termux؟</h4>
+هو تطبيق بيوفر بيئة أوامر شبيهة بلينكس على أندرويد، ونقدر نتعلم من خلاله البرمجة وإدارة الملفات.
+
+<h4>أول تطبيق عملي:</h4>
+<pre>pkg update
+pkg upgrade -y</pre>
+<p>الأوامر دي بتحدّث قوائم الحزم والبرامج المثبتة.</p>
+</div>
+
+<button class="lesson-btn" onclick="openLesson(2)">📗 الدرس الثاني: أوامر Linux</button>
+<div class="lesson-content" id="lesson2">
+<h3>يا شباب، النهارده هنتعلم أهم الأوامر.</h3>
+<pre>pwd
+ls
+whoami
+date
+clear</pre>
+<ul>
+<li>pwd: معرفة مكاننا الحالي.</li>
+<li>ls: عرض الملفات.</li>
+<li>whoami: معرفة اسم المستخدم.</li>
+<li>date: عرض التاريخ والوقت.</li>
+<li>clear: تنظيف الشاشة.</li>
+</ul>
+</div>
+
+<button class="lesson-btn" onclick="openLesson(3)">📙 الدرس الثالث: الملفات والمجلدات</button>
+<div class="lesson-content" id="lesson3">
+<h3>النهارده هنعمل أول مشروع بإيدينا.</h3>
+<pre>mkdir MyProject
+cd MyProject
+touch first.txt
+echo "Welcome to DARK HACKERS" > first.txt
+cat first.txt
+ls</pre>
+<p>كده أنشأنا مجلد وملف وكتبنا فيه رسالة وعرضنا محتواه.</p>
+</div>
+
+<button class="lesson-btn" onclick="openLesson(4)">📕 الدرس الرابع: تثبيت الحزم</button>
+<div class="lesson-content" id="lesson4">
+<h3>هنبدأ نتعلم تثبيت الأدوات.</h3>
+<pre>pkg update
+pkg install python -y
+pkg install git -y
+python --version
+git --version</pre>
+<p>ثبتنا Python وGit وتأكدنا من وجودهما.</p>
+</div>
+
+<button class="lesson-btn" onclick="openLesson(5)">🐍 الدرس الخامس: Python</button>
+<div class="lesson-content" id="lesson5">
+<h3>أول كود Python لينا!</h3>
+<pre>python
+print("DARK HACKERS")
+print(10 + 20)
+exit()</pre>
+<p>الأمر print بيعرض النصوص والنتائج على الشاشة.</p>
+</div>
+
+<button class="lesson-btn" onclick="openLesson(6)">🌐 الدرس السادس: Git وGitHub</button>
+<div class="lesson-content" id="lesson6">
+<h3>إدارة المشاريع البرمجية</h3>
+<pre>git --version
+git init
+git status</pre>
+<p>Git بيساعدنا نتابع تغييرات ملفات المشروع وننظم شغلنا.</p>
+</div>
+
+<button class="lesson-btn" onclick="openLesson(7)">🌍 الدرس السابع: أساسيات الشبكات</button>
+<div class="lesson-content" id="lesson7">
+<h3>نفهم الشبكات من البداية.</h3>
+<pre>pkg install dnsutils -y
+nslookup example.com</pre>
+<p>هنا بنتعلم الاستعلام عن معلومات DNS لنطاق تجريبي.</p>
+</div>
+
+<button class="lesson-btn" onclick="openLesson(8)">🛡️ الدرس الثامن: الحماية السيبرانية</button>
+<div class="lesson-content" id="lesson8">
+<h3>الحماية أهم من الاختراق.</h3>
+<ul>
+<li>اختيار كلمات مرور قوية.</li>
+<li>تفعيل المصادقة الثنائية.</li>
+<li>تحديث التطبيقات.</li>
+<li>التدرب داخل بيئات قانونية ومصرح بها.</li>
+</ul>
+</div>
+
+<div style="border-top:1px solid #8c2222;margin-top:18px;padding-top:12px">
+<h3 style="color:#ff3333">🔥 اختبر نفسك</h3>
+<p>إيه الأمر المستخدم لإنشاء مجلد جديد؟</p>
+<button class="lesson-btn" onclick="checkAnswer('ls')">ls</button>
+<button class="lesson-btn" onclick="checkAnswer('mkdir')">mkdir</button>
+<button class="lesson-btn" onclick="checkAnswer('pwd')">pwd</button>
+<p id="academyAnswer" class="result"></p>
+</div>
+
+<script>
+function openLesson(n){
+ const box=document.getElementById('lesson'+n);
+ box.style.display=box.style.display==='block'?'none':'block';
+}
+function checkAnswer(answer){
+ document.getElementById('academyAnswer').textContent=
+ answer==='mkdir'?'✅ ممتاز! إجابة صحيحة يا بطل.':'❌ حاول تاني يا بطل.';
+}
+</script>
+</div>
+
