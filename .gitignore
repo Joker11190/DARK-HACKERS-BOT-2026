@@ -7,3 +7,5 @@ app_backup.py
 python_lab_backup.py
 templates/tools_backup.html
 python_lab.py
+templates/*backup*.html
+templates/*before_upgrade*.html

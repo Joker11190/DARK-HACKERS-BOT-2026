@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DARK HACKERS | TERMUX LAB</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#07090d;color:#eee;
+ font-family:Arial,sans-serif;
+ background-image:radial-gradient(circle at 50% 0%,#351016 0%,transparent 40%);
+}
+header{
+ padding:22px 15px;text-align:center;
+ border-bottom:1px solid #35151b;
+ background:#090a0e;
+}
+.logo{font-size:28px;font-weight:bold;color:#ff263f;text-shadow:0 0 15px #ff263f}
+header p{color:#aaa;font-size:12px;letter-spacing:2px}
+.status{color:#00ff88;font-size:12px}
+.container{max-width:850px;margin:auto;padding:18px}
+.hero{
+ padding:25px 15px;text-align:center;
+ border:1px solid #48202a;border-radius:18px;
+ background:linear-gradient(135deg,#170b11,#10151a);
+ box-shadow:0 0 25px #ff193015;
+}
+.hero h1{color:#fff;font-size:25px}
+.hero h1 span{color:#ff2947}
+.hero p{color:#aaa;line-height:1.8}
+.search{
+ width:100%;padding:15px;margin:20px 0;
+ border:1px solid #493039;border-radius:12px;
+ background:#101318;color:#fff;font-size:15px;outline:none;
+}
+.search:focus{border-color:#ff2947;box-shadow:0 0 12px #ff294755}
+.section-title{color:#00ff88;margin:25px 0 14px}
+.card{
+ background:linear-gradient(145deg,#13171d,#0c0f13);
+ border:1px solid #292f38;border-right:3px solid #ff2947;
+ border-radius:14px;padding:17px;margin-bottom:14px;
+ transition:.25s;
+}
+.card:hover{transform:translateY(-3px);border-color:#ff2947;box-shadow:0 0 18px #ff294722}
+.card h3{margin:0 0 10px;color:#fff}
+.card p{color:#999;font-size:13px}
+.command{
+ direction:ltr;text-align:left;background:#050709;
+ border:1px solid #252b31;border-radius:9px;
+ padding:13px;color:#00ff88;overflow:auto;
+ font-family:monospace;font-size:13px;
+}
+.copy{
+ margin-top:12px;padding:10px 17px;
+ background:#ff2947;color:white;border:0;
+ border-radius:8px;font-weight:bold;cursor:pointer;
+}
+.copy:active{transform:scale(.96)}
+footer{text-align:center;padding:25px;color:#777;font-size:12px}
+.back{display:inline-block;color:#00ff88;text-decoration:none;margin-top:15px}
+.hidden{display:none}
+</style>
+</head>
+<body>
+<header>
+ <div class="logo">💀 DARK HACKERS</div>
+ <p>TERMUX COMMAND CENTER</p>
+ <div class="status">● SYSTEM ONLINE</div>
+</header>
+
+<div class="container">
+ <div class="hero">
+  <h1>WELCOME TO <span>TERMUX LAB</span></h1>
+  <p>منصة تعليمية لتعلم أوامر Termux وأساسيات لينكس<br>تعلم • جرب • طور مهاراتك</p>
+ </div>
+
+ <input class="search" id="search" placeholder="🔎 ابحث عن أمر أو أداة...">
+
+ <h2 class="section-title">⌨️ أوامر الأساسيات</h2>
+
+ <div class="card">
+  <h3>📦 تحديث الحزم</h3>
+  <p>تحديث قائمة الحزم في Termux</p>
+  <div class="command">pkg update</div>
+  <button class="copy">نسخ الأمر</button>
+ </div>
+
+ <div class="card">
+  <h3>⚙️ ترقية الحزم</h3>
+  <p>تثبيت آخر التحديثات المتاحة</p>
+  <div class="command">pkg upgrade -y</div>
+  <button class="copy">نسخ الأمر</button>
+ </div>
+
+ <div class="card">
+  <h3>🐍 تثبيت Python</h3>
+  <p>تجهيز بيئة Python للتعلم والبرمجة</p>
+  <div class="command">pkg install python -y</div>
+  <button class="copy">نسخ الأمر</button>
+ </div>
+
+ <div class="card">
+  <h3>🔗 تثبيت Git</h3>
+  <p>إدارة المشاريع وتحميل المستودعات</p>
+  <div class="command">pkg install git -y</div>
+  <button class="copy">نسخ الأمر</button>
+ </div>
+
+ <h2 class="section-title">📁 إدارة الملفات</h2>
+
+ <div class="card">
+  <h3>📂 عرض الملفات</h3>
+  <p>عرض الملفات والمجلدات الحالية</p>
+  <div class="command">ls</div>
+  <button class="copy">نسخ الأمر</button>
+ </div>
+
+ <div class="card">
+  <h3>📁 إنشاء مجلد</h3>
+  <p>إنشاء مجلد جديد باسم MyProject</p>
+  <div class="command">mkdir MyProject</div>
+  <button class="copy">نسخ الأمر</button>
+ </div>
+
+ <div class="card">
+  <h3>📄 إنشاء ملف</h3>
+  <p>إنشاء ملف نصي جديد</p>
+  <div class="command">touch first.txt</div>
+  <button class="copy">نسخ الأمر</button>
+ </div>
+
+ <div class="card">
+  <h3>📖 قراءة ملف</h3>
+  <p>عرض محتويات ملف نصي</p>
+  <div class="command">cat first.txt</div>
+  <button class="copy">نسخ الأمر</button>
+ </div>
+
+ <center><a class="back" href="/">⬅ العودة للرئيسية</a></center>
+</div>
+
+<footer>
+DARK HACKERS © 2026<br>
+LEARN • BUILD • PROTECT
+</footer>
+
+<script>
+document.querySelectorAll(".copy").forEach(btn=>{
+ btn.addEventListener("click",async()=>{
+  const command=btn.previousElementSibling.innerText;
+  try{
+   await navigator.clipboard.writeText(command);
+   btn.innerText="✓ تم النسخ";
+   setTimeout(()=>btn.innerText="نسخ الأمر",1500);
+  }catch(e){
+   btn.innerText="تعذر النسخ";
+  }
+ });
+});
+
+document.getElementById("search").addEventListener("input",e=>{
+ const value=e.target.value.toLowerCase();
+ document.querySelectorAll(".card").forEach(card=>{
+  card.classList.toggle("hidden",!card.innerText.toLowerCase().includes(value));
+ });
+});
+</script>
+</body>
+</html>
+

@@ -1,0 +1,291 @@
+$ cat > templates/lessons.html <<'EOF'
+>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080808">
+<title>DARK HACKERS | ACADEMY</title>
+<style>
+*{box-sizing:border-box}
+:root{--red:#ff1744;--green:#00ff9c;--bg:#080a0d;--panel:#141920}
+body{margin:0;background:var(--bg);color:#eee;font-family:Arial,sans-serif;line-height:1.9}
+header{text-align:center;padding:25px 12px;background:#101116;border-bottom:1px solid #49202b}
+.logo{font-size:29px;color:var(--red);font-weight:bold;text-shadow:0 0 15px red}
+header small{color:var(--green);letter-spacing:3px}
+.container{max-width:1000px;margin:auto;padding:16px}
+.hero,.panel,.level-card,.path-card{background:var(--panel);border:1px solid #303943;border-radius:15px;padding:18px;margin-bottom:14px}
+.hero{text-align:center;background:linear-gradient(140deg,#251019,#101c19)}
+.hero h1 span{color:var(--red)}
+.hero p,.muted{color:#aaa}
+.title{color:var(--green);margin:25px 0 12px}
+.levels,.paths{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.level-card,.path-card{text-align:center}
+.level-card p,.path-card p{color:#aaa;font-size:13px}
+.level-card button,.path-card button{width:100%}
+button{border:0;border-radius:9px;padding:11px 15px;background:#a81730;color:white;font-weight:bold;cursor:pointer;margin:4px}
+button:hover{background:#17663f}
+.green{color:var(--green)}
+.yellow{color:#ffc857}
+.red{color:var(--red)}
+.hidden{display:none!important}
+.search{width:100%;padding:13px;background:#111820;color:white;border:1px solid #39434c;border-radius:9px;font-size:15px;margin:10px 0}
+.lesson{background:#101820;border:1px solid #303943;border-right:3px solid var(--green);border-radius:12px;padding:16px;margin:12px 0}
+.lesson h3{color:var(--green);margin:0}
+.lesson p{color:#ccc}
+code{display:block;direction:ltr;text-align:left;background:#050709;color:var(--green);padding:12px;border-radius:8px;overflow:auto;white-space:pre;margin:10px 0}
+.progress{height:9px;background:#303640;border-radius:10px;overflow:hidden}
+.progress span{display:block;height:100%;width:0;background:var(--green)}
+.stat{color:var(--green);font-weight:bold}
+.answer{display:block;width:100%;text-align:right;background:#202630}
+footer{text-align:center;color:#777;padding:25px}
+@media(max-width:650px){.levels,.paths{grid-template-columns:1fr}.container{padding:12px}}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">💀 DARK HACKERS</div>
+<small>CYBER LEARNING ACADEMY</small>
+</header>
+<main class="container">
+<section class="hero">
+<div class="green">WELCOME TO DARK HACKERS</div>
+<h1>من الصفر <span>للاحتراف</span></h1>
+<p>أكاديمية تعليم البرمجة وTermux وتطوير المواقع والبوتات والأمن السيبراني.</p>
+</section>
+<section id="choose">
+<h2 class="title">💀 اختار مستواك</h2>
+<div class="levels">
+<article class="level-card">
+<div>🟢</div><h3 class="green">المبتدئ</h3>
+<p>ابدأ من الصفر خطوة بخطوة.</p>
+<button onclick="selectLevel('beginner')">ابدأ التعلم</button>
+</article>
+<article class="level-card">
+<div>🟡</div><h3 class="yellow">المتوسط</h3>
+<p>طوّر مهاراتك وابنِ مشاريع.</p>
+<button onclick="selectLevel('intermediate')">دخول المستوى</button>
+</article>
+<article class="level-card">
+<div>🔴</div><h3 class="red">المحترف</h3>
+<p>مشاريع متقدمة وتطبيق عملي.</p>
+<button onclick="selectLevel('advanced')">دخول المحترفين</button>
+</article>
+</div>
+</section>
+<section id="academy" class="hidden">
+<button onclick="back()">← تغيير المستوى</button>
+<div class="panel">
+<h2 id="levelTitle"></h2>
+<p id="levelDesc" class="muted"></p>
+<div>تقدمك: <span id="progressText" class="stat">0%</span></div>
+<div class="progress"><span id="progressBar"></span></div>
+<p id="doneCount" class="stat"></p>
+</div>
+<h2 class="title">📚 المسارات التعليمية</h2>
+<div id="paths" class="paths"></div>
+<div id="lessonsArea"></div>
+</section>
+<a href="/" style="display:block;text-align:center;color:#00ff9c;padding:20px">⬅ العودة للرئيسية</a>
+</main>
+<footer>DARK HACKERS © 2026<br>LEARN • PRACTICE • BUILD • PROTECT</footer>
+<script>
+const pathsData={
+termux:{
+name:"📱 TERMUX MASTER",
+desc:"تعلم Termux والأوامر وتثبيت الأدوات واستخدامها.",
+lessons:[
+["ما هو Termux؟","بيئة أوامر على أندرويد تساعدك تتعلم Linux وتشغل أدوات البرمجة."],
+["تحديث Termux","نحدّث قائمة الحزم والبرامج قبل التثبيت.","pkg update && pkg upgrade -y"],
+["تثبيت Python","تثبيت لغة Python على Termux.","pkg install python -y"],
+["تثبيت Git","Git لإدارة ملفات وإصدارات المشاريع.","pkg install git -y"],
+["تثبيت Nano","محرر نصوص لتعديل الملفات من الطرفية.","pkg install nano -y"],
+["تثبيت Curl","أداة لإرسال واستقبال طلبات الإنترنت.","pkg install curl -y"],
+["تثبيت Wget","أداة لتنزيل الملفات من الإنترنت.","pkg install wget -y"],
+["تثبيت OpenSSH","أدوات اتصال SSH وإدارة الأجهزة التي تملك صلاحية إدارتها.","pkg install openssh -y"],
+["تنظيم الملفات","إنشاء مجلدات والدخول إليها وعرض الملفات.","mkdir project\ncd project\npwd\nls"],
+["تطبيق عملي","أنشئ مجلد مشروع واكتب ملفًا تجريبيًا.","mkdir MyProject\ncd MyProject\ntouch first.txt\nls"]
+]},
+python:{
+name:"🐍 PYTHON ACADEMY",
+desc:"تعلم Python من البداية وحتى بناء برامج عملية.",
+lessons:[
+["أول برنامج","print بتعرض رسالة على الشاشة.","print('Hello DARK HACKERS')"],
+["المتغيرات","المتغير بيخزن قيمة نستخدمها لاحقًا.","name = 'DARK'\nprint(name)"],
+["أنواع البيانات","النصوص والأرقام والقيم المنطقية.","name = 'Hacker'\nage = 20\nprint(type(age))"],
+["استقبال البيانات","input بتستقبل بيانات من المستخدم.","name = input('Your name: ')\nprint('Welcome',name)"],
+["الشروط","if بتنفذ كود حسب تحقق الشرط.","age = 20\nif age >= 18:\n    print('Adult')"],
+["الحلقات","for بتكرر تنفيذ مجموعة أوامر.","for i in range(5):\n    print(i)"],
+["الدوال","def بتنشئ دالة قابلة لإعادة الاستخدام.","def hello():\n    print('Hello')\nhello()"],
+["القوائم","list بتخزن أكتر من قيمة.","tools = ['Python','Git','Termux']\nprint(tools)"],
+["الملفات","نقدر نكتب بيانات في ملف ونقرأها.","with open('data.txt','w') as f:\n    f.write('DARK HACKERS')"],
+["مشروع عملي","برنامج ترحيب بسيط باستخدام المدخلات.","name = input('Name: ')\nprint('Welcome',name)"]
+]},
+web:{
+name:"🌐 WEB DEVELOPMENT",
+desc:"صناعة مواقع باستخدام HTML وCSS وJavaScript وFlask.",
+lessons:[
+["HTML","HTML هيكل صفحة الويب.","<h1>Hello World</h1>\n<p>My first website</p>"],
+["العناوين والفقرات","h1 عنوان رئيسي وp فقرة نصية.","<h1>DARK HACKERS</h1>\n<p>Welcome</p>"],
+["الروابط","a بتنشئ رابطًا قابلًا للضغط.","<a href='https://example.com'>Visit</a>"],
+["CSS","CSS مسؤولة عن شكل وألوان الصفحة.","body { background:#080808; color:white; }"],
+["JavaScript","JavaScript بتضيف التفاعل للصفحة.","alert('Welcome');"],
+["تصميم البطاقات","استخدم div وCSS لعمل بطاقات للمحتوى.","<div class='card'>My Card</div>"],
+["تثبيت Flask","Flask إطار Python لبناء تطبيقات ويب.","pip install flask"],
+["أول تطبيق Flask","أنشئ ملف app.py واكتب تطبيقًا بسيطًا.","from flask import Flask\napp=Flask(__name__)\n@app.route('/')\ndef home():\n    return 'DARK HACKERS'\napp.run()"],
+["تشغيل الموقع محليًا","شغّل التطبيق داخل بيئة Termux.","python app.py"],
+["نشر الموقع","تعلم GitHub وRender لنشر مشروعك وإتاحة رابط HTTPS."]
+]},
+bots:{
+name:"🤖 BOT DEVELOPMENT",
+desc:"تعلم بناء البوتات وربطها بخدمات رسمية.",
+lessons:[
+["يعني إيه Bot؟","برنامج بيستقبل رسائل أو أحداث وينفذ ردودًا تلقائية."],
+["تجهيز Python","تأكد من تثبيت Python وpip.","pkg install python -y"],
+["تثبيت مكتبة Telegram","مكتبة لبناء بوت Telegram.","pip install python-telegram-bot"],
+["إنشاء بوت Telegram","أنشئ بوت من BotFather واحفظ الرمز سرًا."],
+["أول رد تلقائي","استخدم مكتبة Telegram للرد على رسالة المستخدم.","from telegram.ext import Application,CommandHandler\n\nasync def start(update,context):\n    await update.message.reply_text('Welcome!')"],
+["الأوامر","أنشئ أوامر مثل start وhelp لتنظيم البوت."],
+["حماية الرمز","لا تكتب Token داخل كود منشور أو مستودع عام. استخدم متغيرات البيئة."],
+["Discord Bots","تعلم إنشاء تطبيق وبوت من بوابة Discord الرسمية."],
+["WhatsApp Bots","تعلم WhatsApp Business Platform وCloud API الرسمية."],
+["مشروع نهائي","أنشئ بوتًا تعليميًا يرد على الأوامر ويعرض المساعدة."]
+]},
+cyber:{
+name:"🛡️ CYBER SECURITY",
+desc:"أساسيات حماية الأجهزة والشبكات والتدريب الأمني المصرح به.",
+lessons:[
+["مفهوم الأمن السيبراني","حماية الأجهزة والحسابات والبيانات من التهديدات."],
+["كلمات المرور","استخدم كلمات مرور طويلة وفريدة ومدير كلمات مرور."],
+["المصادقة الثنائية","أضف طبقة حماية ثانية لحساباتك."],
+["التصيد الإلكتروني","تعرف على الرسائل والروابط المزيفة وتجنب فتحها."],
+["الشبكات","افهم IP وDNS والبوابة الافتراضية."],
+["فحص جهازك","راجع معلومات الشبكة المحلية لجهازك.","ip addr"],
+["HTTPS","تعرف على دور شهادات TLS في حماية الاتصال."],
+["تحديث الأنظمة","التحديثات بتعالج ثغرات ومشكلات أمنية.","pkg update && pkg upgrade -y"],
+["تحليل السجلات","راجع سجلات التطبيقات لاكتشاف الأخطاء والنشاط غير المعتاد."],
+["مختبر تدريبي","اختبر تطبيقًا محليًا تملكه أو لديك تصريح صريح لاختباره."]
+]},
+tools:{
+name:"🧰 TOOLS & APPS",
+desc:"أهم التطبيقات والحزم التي تساعدك في العمل داخل Termux.",
+lessons:[
+["مدير الحزم pkg","تثبيت البرامج وإدارتها من مستودعات Termux.","pkg search python"],
+["Python وPip","تشغيل البرامج وتثبيت المكتبات.","pkg install python -y\npython -m pip --version"],
+["Git وGitHub","تنزيل المشاريع وإدارة الإصدارات.","pkg install git -y\ngit --version"],
+["Nano","تعديل الملفات النصية.","pkg install nano -y\nnano test.py"],
+["Curl","اختبار الوصول لخدمة تملكها أو خدمة عامة.","curl -I https://example.com"],
+["Wget","تنزيل ملف من رابط موثوق.","pkg install wget -y"],
+["OpenSSH","الاتصال الآمن بأجهزة تملك صلاحية إدارتها.","pkg install openssh -y"],
+["Termux:API","إضافة إمكانيات أندرويد بعد تثبيت تطبيق Termux:API المتوافق وحزمته.","pkg install termux-api"],
+["Whois وDNS","التعرف على معلومات النطاقات واستعلامات DNS العامة.","pkg install whois dnsutils"],
+["إدارة الأدوات","تعلم البحث عن الحزم وتحديثها وإزالة ما لا تحتاجه.","pkg list-installed"]
+]}
+};
+
+const levelNames={
+beginner:["🟢 المبتدئ","ابدأ من الصفر وتعلم الأساسيات خطوة بخطوة."],
+intermediate:["🟡 المتوسط","طوّر مهاراتك وابدأ بناء مشاريع عملية."],
+advanced:["🔴 المحترف","تعمق في المشاريع والتطوير والحماية."]
+};
+
+let currentLevel='';
+let currentPath='';
+let completed=JSON.parse(localStorage.getItem('dh_academy_done')||'{}');
+
+function selectLevel(level){
+ currentLevel=level;
+ document.getElementById('choose').classList.add('hidden');
+ document.getElementById('academy').classList.remove('hidden');
+ document.getElementById('levelTitle').textContent=levelNames[level][0];
+ document.getElementById('levelDesc').textContent=levelNames[level][1];
+ renderPaths();
+ updateProgress();
+ window.scrollTo(0,0);
+}
+
+function renderPaths(){
+ const area=document.getElementById('paths');
+ area.innerHTML='';
+ Object.keys(pathsData).forEach(key=>{
+  const item=pathsData[key];
+  const card=document.createElement('article');
+  card.className='path-card';
+  const h=document.createElement('h3');
+  h.textContent=item.name;
+  const p=document.createElement('p');
+  p.textContent=item.desc;
+  const b=document.createElement('button');
+  b.textContent='افتح المسار';
+  b.onclick=()=>openPath(key);
+  card.append(h,p,b);
+  area.append(card);
+ });
+}
+
+function openPath(key){
+ currentPath=key;
+ const item=pathsData[key];
+ const area=document.getElementById('lessonsArea');
+ area.innerHTML='<h2 class="title">'+item.name+'</h2><p class="muted">'+item.desc+'</p>';
+ item.lessons.forEach((lesson,i)=>{
+  const card=document.createElement('article');
+  card.className='lesson';
+  const h=document.createElement('h3');
+  h.textContent='الدرس '+(i+1)+': '+lesson[0];
+  const p=document.createElement('p');
+  p.textContent=lesson[1];
+  card.append(h,p);
+  if(lesson[2]){
+   const code=document.createElement('code');
+   code.textContent=lesson[2];
+   const copy=document.createElement('button');
+   copy.textContent='نسخ الكود';
+   copy.onclick=()=>navigator.clipboard.writeText(lesson[2]).then(()=>copy.textContent='✓ تم النسخ').catch(()=>copy.textContent='انسخ يدويًا');
+   card.append(code,copy);
+  }
+  const id=currentLevel+'_'+key+'_'+i;
+  const done=(completed[currentLevel]||[]).includes(id);
+  const btn=document.createElement('button');
+  btn.textContent=done?'✓ مكتمل':'إكمال الدرس';
+  btn.disabled=done;
+  btn.onclick=()=>markDone(id);
+  card.append(btn);
+  area.append(card);
+ });
+ area.scrollIntoView({behavior:'smooth'});
+}
+
+function markDone(id){
+ if(!completed[currentLevel])completed[currentLevel]=[];
+ if(!completed[currentLevel].includes(id))completed[currentLevel].push(id);
+ localStorage.setItem('dh_academy_done',JSON.stringify(completed));
+ openPath(currentPath);
+ updateProgress();
+}
+
+function updateProgress(){
+ let total=0,done=0;
+ Object.keys(pathsData).forEach(key=>{
+  pathsData[key].lessons.forEach((lesson,i)=>{
+   total++;
+   const id=currentLevel+'_'+key+'_'+i;
+   if((completed[currentLevel]||[]).includes(id))done++;
+  });
+ });
+ const percent=Math.round(done/total*100);
+ document.getElementById('progressText').textContent=percent+'%';
+ document.getElementById('progressBar').style.width=percent+'%';
+ document.getElementById('doneCount').textContent='الدروس المكتملة: '+done+' من '+total;
+}
+
+function back(){
+ document.getElementById('academy').classList.add('hidden');
+ document.getElementById('choose').classList.remove('hidden');
+ document.getElementById('lessonsArea').innerHTML='';
+ window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>

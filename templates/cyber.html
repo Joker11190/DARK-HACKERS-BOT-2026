@@ -1,0 +1,261 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DARK HACKERS | CYBER CENTER</title>
+<style>
+*{box-sizing:border-box}
+:root{--red:#ff1744;--green:#00ff9c;--bg:#07090d}
+body{
+ margin:0;background:var(--bg);color:#eee;
+ font-family:Arial,sans-serif;line-height:1.9;
+ background-image:
+ radial-gradient(ellipse at 10% 0%,#40101d66,transparent 40%),
+ radial-gradient(ellipse at 90% 50%,#002b2044,transparent 40%);
+}
+header{
+ position:relative;text-align:center;padding:27px 15px;
+ background:#090b10;border-bottom:1px solid #401c27;
+}
+.logo{font-size:29px;font-weight:900;color:var(--red);text-shadow:0 0 18px #ff1744}
+.sub{color:#888;font-size:11px;letter-spacing:3px}
+.online{color:var(--green);font-size:12px;margin-top:8px}
+.container{max-width:900px;margin:auto;padding:18px}
+.hero{
+ position:relative;overflow:hidden;text-align:center;
+ padding:35px 18px;border:1px solid #54202e;
+ border-radius:20px;
+ background:linear-gradient(135deg,#190b13,#10151b);
+ box-shadow:0 0 35px #ff174415;
+}
+.hero:after{
+ content:"";position:absolute;top:0;left:-100%;
+ width:60%;height:2px;background:var(--red);
+ animation:scan 4s linear infinite;
+}
+@keyframes scan{to{left:150%}}
+.tag{color:var(--green);font-size:11px;letter-spacing:2px}
+.hero h1{font-size:27px;margin:12px 0;color:white}
+.hero h1 span{color:var(--red);text-shadow:0 0 15px #ff1744}
+.hero p{color:#aaa;font-size:14px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:15px 0}
+.stat{
+ text-align:center;padding:14px 5px;background:#11151b;
+ border:1px solid #30323b;border-radius:12px
+}
+.stat strong{display:block;color:var(--green);font-size:23px}
+.stat span{color:#888;font-size:11px}
+.section-title{color:var(--green);font-size:19px;margin:27px 0 13px}
+.card{
+ background:linear-gradient(145deg,#151820,#0c0f14);
+ border:1px solid #30343d;border-right:3px solid var(--red);
+ border-radius:15px;padding:18px;margin-bottom:14px;
+ transition:.25s;box-shadow:0 5px 20px #0005;
+}
+.card:hover{transform:translateY(-3px);border-color:var(--red);box-shadow:0 0 20px #ff174422}
+.card h3{margin:0 0 8px;color:white}
+.card p{color:#aaa;font-size:14px;margin:8px 0}
+.number{color:var(--red);font-size:12px}
+details{margin-top:12px}
+summary{
+ cursor:pointer;list-style:none;color:var(--green);
+ padding:10px;background:#080d11;border-radius:8px;
+ border:1px solid #263b35
+}
+summary:after{content:"＋";float:left}
+details[open] summary:after{content:"－"}
+.detail{padding:12px;color:#bbb;font-size:14px}
+.search{
+ width:100%;padding:15px;background:#11151b;
+ border:1px solid #37313a;border-radius:12px;
+ color:white;outline:none;margin:20px 0;font-size:15px
+}
+.search:focus{border-color:var(--red);box-shadow:0 0 12px #ff174433}
+.option{
+ display:block;width:100%;text-align:right;
+ padding:13px;margin:9px 0;background:#11151b;
+ color:#eee;border:1px solid #343943;
+ border-radius:9px;cursor:pointer;font-size:14px
+}
+.option:hover{border-color:var(--green)}
+#result{font-weight:bold;margin-top:15px}
+.progress{height:7px;background:#242832;border-radius:20px;overflow:hidden;margin:12px 0}
+.progress span{display:block;width:0;height:100%;background:var(--green);transition:.4s}
+.back{
+ display:block;text-align:center;text-decoration:none;
+ color:var(--green);padding:18px;border:1px solid #214638;
+ border-radius:12px;margin-top:20px
+}
+footer{text-align:center;padding:25px;color:#777;font-size:11px}
+.hidden{display:none!important}
+@media(max-width:450px){
+ .hero h1{font-size:22px}
+ .stats{gap:6px}
+ .stat strong{font-size:19px}
+ .container{padding:12px}
+}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="logo">💀 DARK HACKERS</div>
+ <div class="sub">CYBER COMMAND CENTER</div>
+ <div class="online">● SYSTEM ONLINE — LEARNING MODE</div>
+</header>
+
+<main class="container">
+
+<section class="hero">
+ <div class="tag">WELCOME TO THE DARK SIDE</div>
+ <h1>CYBER <span>SECURITY</span></h1>
+ <p>أهلًا بيكم في مركز الأمن السيبراني.
+هنا مش هنتعلم استخدام الأدوات وبس، هنا هنتعلم نفهم التكنولوجيا ونحلل المخاطر ونحمي بياناتنا.</p>
+ <div class="tag">LEARN • ANALYZE • PROTECT</div>
+</section>
+
+<div class="stats">
+ <div class="stat"><strong>05</strong><span>محاور تعليمية</span></div>
+ <div class="stat"><strong>100%</strong><span>تعلم آمن</span></div>
+ <div class="stat"><strong>01</strong><span>اختبار تفاعلي</span></div>
+</div>
+
+<input class="search" id="search" placeholder="⌕ ابحث عن درس أو مفهوم...">
+
+<h2 class="section-title">◈ KNOWLEDGE DATABASE</h2>
+
+<section class="card">
+ <div class="number">MODULE 01</div>
+ <h3>🛡️ مقدمة الأمن السيبراني</h3>
+ <p>خلوني أبدأ معاكم من الأساس: يعني إيه أمن سيبراني وليه بقى مهم في حياتنا؟</p>
+ <details>
+  <summary>افتح الشرح الكامل</summary>
+  <div class="detail">
+   الأمن السيبراني هو حماية الأجهزة والشبكات والأنظمة والبيانات من الوصول غير المصرح به أو السرقة أو التعديل أو التعطيل.
+   <br><br>
+   ببساطة، إحنا بنتعلم إزاي نحافظ على معلوماتنا وأجهزتنا ونفهم المخاطر اللي ممكن نتعرض ليها.
+  </div>
+ </details>
+</section>
+
+<section class="card">
+ <div class="number">MODULE 02</div>
+ <h3>🎣 التصيد الإلكتروني PHISHING</h3>
+ <p>من أشهر طرق خداع المستخدمين على الإنترنت.</p>
+ <details>
+  <summary>افتح الشرح الكامل</summary>
+  <div class="detail">
+   التصيد الإلكتروني بيحصل لما شخص يستخدم رسالة أو صفحة مزيفة علشان يخدعك وتكشف بياناتك.
+   <br><br>
+   علامات الخطر: رابط غريب، استعجال غير طبيعي، طلب كلمة المرور أو كود التحقق.
+   <br><br>
+   الحماية: متضغطش على الروابط المشبوهة، وافتح الموقع الرسمي بنفسك.
+  </div>
+ </details>
+</section>
+
+<section class="card">
+ <div class="number">MODULE 03</div>
+ <h3>🦠 البرمجيات الخبيثة MALWARE</h3>
+ <p>فهم البرامج الضارة وتأثيرها على الأجهزة والملفات.</p>
+ <details>
+  <summary>افتح الشرح الكامل</summary>
+  <div class="detail">
+   Malware اسم عام للبرمجيات المصممة لتنفيذ أنشطة ضارة.
+   <br><br>
+   من أنواعها:
+   <br>• Virus: فيروس يرتبط بملفات أو برامج.
+   <br>• Trojan: برنامج يتظاهر بأنه مفيد.
+   <br>• Ransomware: برمجية تشفر الملفات وتطلب فدية.
+   <br><br>
+   الوقاية: حمّل البرامج من مصادر موثوقة، وحدّث جهازك، وتجنب الملفات المجهولة.
+  </div>
+ </details>
+</section>
+
+<section class="card">
+ <div class="number">MODULE 04</div>
+ <h3>🌐 NETWORK SECURITY</h3>
+ <p>حماية الشبكات والاتصالات من المخاطر.</p>
+ <details>
+  <summary>افتح الشرح الكامل</summary>
+  <div class="detail">
+   أمن الشبكات هو حماية البنية الشبكية والبيانات المتبادلة بين الأجهزة.
+   <br><br>
+   من أساسيات الحماية:
+   <br>• استخدام تشفير Wi-Fi قوي.
+   <br>• تغيير كلمة مرور الراوتر الافتراضية.
+   <br>• تحديث البرامج الثابتة للراوتر.
+   <br>• استخدام جدار الحماية Firewall.
+   <br><br>
+   ونتعلم اختبار الشبكات داخل بيئات نمتلكها أو لدينا تصريح بفحصها.
+  </div>
+ </details>
+</section>
+
+<section class="card">
+ <div class="number">MODULE 05</div>
+ <h3>🔐 PASSWORD SECURITY</h3>
+ <p>إزاي نعمل كلمات مرور صعبة التخمين ونحمي حساباتنا.</p>
+ <details>
+  <summary>افتح الشرح الكامل</summary>
+  <div class="detail">
+   كلمة المرور القوية تكون طويلة وفريدة لكل حساب، ويفضل استخدام مدير كلمات مرور.
+   <br><br>
+   فعّل المصادقة الثنائية 2FA، ومتشاركش رموز التحقق مع أي شخص.
+  </div>
+ </details>
+</section>
+
+<h2 class="section-title">◈ KNOWLEDGE TEST</h2>
+<section class="card">
+ <h3>🎯 اختبر معلوماتك</h3>
+ <p>وصلك رابط بيطلب كلمة المرور بحجة إن حسابك هيتقفل، إيه التصرف الصحيح؟</p>
+ <button class="option" onclick="check(0)">A — أدخل كلمة المرور بسرعة.</button>
+ <button class="option" onclick="check(1)">B — أتجاهل الرابط وأدخل للموقع الرسمي بنفسي.</button>
+ <button class="option" onclick="check(2)">C — أبعت الرابط لأصحابي.</button>
+ <div class="progress"><span id="bar"></span></div>
+ <div id="result">اختار إجابتك لعرض النتيجة.</div>
+</section>
+
+<section class="card">
+ <h3>💀 رسالة DARK HACKERS</h3>
+ <p>أنا هدفي إننا نتعلم صح، ونفهم كل خطوة قبل تنفيذها. المعرفة الحقيقية مش في كثرة الأدوات، لكن في فهم طريقة عملها واستخدامها بشكل مسؤول.</p>
+ <p>كل تطبيق عملي هيكون في بيئة تدريب آمنة وبإذن واضح.</p>
+</section>
+
+<a class="back" href="/">⬅ العودة إلى الصفحة الرئيسية</a>
+
+</main>
+
+<footer>
+DARK HACKERS © 2026<br>
+KNOWLEDGE IS POWER — USE IT WISELY
+</footer>
+
+<script>
+function check(n){
+ const result=document.getElementById("result");
+ const bar=document.getElementById("bar");
+ if(n===1){
+  result.style.color="#00ff9c";
+  result.textContent="✓ إجابة صحيحة! أنت كده بتحمي بياناتك.";
+  bar.style.width="100%";
+ }else{
+  result.style.color="#ff1744";
+  result.textContent="✗ مش دي الإجابة الصحيحة. الروابط المجهولة ممكن تكون تصيد إلكتروني.";
+  bar.style.width="0%";
+ }
+}
+document.getElementById("search").addEventListener("input",function(){
+ const q=this.value.toLowerCase();
+ document.querySelectorAll(".card").forEach(card=>{
+  card.classList.toggle("hidden",!card.innerText.toLowerCase().includes(q));
+ });
+});
+</script>
+</body>
+</html>
+

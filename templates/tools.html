@@ -1,281 +1,249 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>DARK HACKERS TOOLS</title>
+<title>DARK HACKERS | TOOLS</title>
 <style>
-body{background:#080808;color:white;font-family:Arial;padding:15px}
-h1{text-align:center;color:#ff2222}
-.card{background:#171717;border:1px solid #7b1111;padding:18px;border-radius:12px;margin:15px 0}
-input,textarea{width:100%;box-sizing:border-box;background:#080808;color:white;border:1px solid #8c2222;padding:12px;border-radius:8px;margin:8px 0}
-button{background:#b00000;color:white;border:0;padding:12px;border-radius:8px;margin:5px 0;width:100%}
-.result{color:#62ff91;overflow-wrap:anywhere}
+*{box-sizing:border-box}
+body{
+ margin:0;padding:18px;background:#070707;color:#eee;
+ font-family:Arial,sans-serif;line-height:1.8
+}
+header{text-align:center;padding:20px 5px}
+h1{color:#ff2525;font-size:30px;text-shadow:0 0 15px #900}
+header p{color:#65ff91}
+.card{
+ background:#141414;border:1px solid #7d1717;
+ border-radius:14px;padding:18px;margin:18px 0;
+ box-shadow:0 0 12px #30000055
+}
+h2{color:#ff3434;font-size:20px}
+h3{color:#70ff9b}
+input,textarea,select{
+ width:100%;padding:13px;margin:8px 0;
+ border:1px solid #742020;border-radius:8px;
+ background:#080808;color:#fff;font-size:15px
+}
+textarea{min-height:110px;resize:vertical}
+button{
+ width:100%;padding:13px;margin:6px 0;
+ border:0;border-radius:8px;background:#a90000;
+ color:white;font-weight:bold;font-size:15px;cursor:pointer
+}
+button:hover{background:#d00000}
+.secondary{background:#174b2a}
+.result{
+ background:#080d09;border:1px solid #245b35;
+ border-radius:8px;padding:12px;color:#70ff91;
+ overflow-wrap:anywhere;white-space:pre-wrap;min-height:25px
+}
+.note{color:#bbb;font-size:13px}
+a{color:#70ff91;text-decoration:none}
+footer{text-align:center;color:#777;padding:20px}
 </style>
 </head>
 <body>
+
+<header>
 <h1>💀 DARK HACKERS</h1>
-<p style="text-align:center">TOOLS CENTER</p>
+<p>CYBER TOOLS CENTER</p>
+<div class="note">منصة تعليمية للأمن السيبراني والبرمجة</div>
+</header>
 
 <div class="card">
-<h3>🔐 Password Generator</h3>
-<input id="len" type="number" value="16" min="8" max="64">
-<button onclick="generate()">إنشاء كلمة مرور</button>
-<p id="pass" class="result"></p>
+<h2>🔐 1 - Password Generator</h2>
+<p>إنشاء كلمات مرور عشوائية قوية.</p>
+<label>طول كلمة المرور (من 8 إلى 64)</label>
+<input id="passLength" type="number" min="8" max="64" value="20">
+<button onclick="generatePassword()">إنشاء كلمة مرور</button>
+<div id="generated" class="result">كلمة المرور هتظهر هنا</div>
+<button class="secondary" onclick="copyText('generated')">📋 نسخ كلمة المرور</button>
 </div>
 
 <div class="card">
-<h3>🛡️ Password Strength</h3>
-<input id="password" type="password" placeholder="اكتب كلمة المرور">
-<button onclick="checkPass()">فحص القوة</button>
-<p id="strength" class="result"></p>
+<h2>🛡️ 2 - Password Strength Test</h2>
+<p>اختبار مبدئي لقوة كلمة المرور.</p>
+<input id="checkPassword" type="password" placeholder="اكتب كلمة المرور">
+<button onclick="checkStrength()">فحص القوة</button>
+<div id="strengthResult" class="result">نتيجة الفحص هتظهر هنا</div>
+<p class="note">الفحص تعليمي ومبدئي، ولا يضمن أن كلمة المرور لم تُسرّب سابقًا. لا تستخدم كلمة مرورك الحقيقية في مواقع غير موثوقة.</p>
 </div>
 
 <div class="card">
-<h3>🔄 Base64 Encoder / Decoder</h3>
-<textarea id="txt" placeholder="اكتب النص هنا"></textarea>
-<button onclick="encode()">تشفير Base64</button>
-<button onclick="decode()">فك Base64</button>
-<p id="output" class="result"></p>
+<h2>🔒 3 - AES Encryption</h2>
+<p>تشفير النصوص والأكواد باستخدام AES-GCM.</p>
+<textarea id="plainText" dir="auto" placeholder="اكتب النص أو الكود المراد تشفيره"></textarea>
+<input id="encryptKey" type="password" placeholder="اكتب مفتاح التشفير السري">
+<button onclick="encryptText()">🔐 تشفير النص</button>
+<div id="encryptedResult" class="result">النص المشفر هيظهر هنا</div>
+<button class="secondary" onclick="copyText('encryptedResult')">📋 نسخ النص المشفر</button>
 </div>
 
 <div class="card">
-<h3>🌐 Network Information</h3>
-<button onclick="network()">عرض معلومات الاتصال</button>
-<p id="net" class="result"></p>
+<h2>🔓 4 - AES Decryption</h2>
+<p>فك تشفير النص باستخدام نفس المفتاح السري.</p>
+<textarea id="cipherText" dir="ltr" placeholder="الصق النص المشفر هنا"></textarea>
+<input id="decryptKey" type="password" placeholder="اكتب نفس مفتاح التشفير">
+<button onclick="decryptText()">🔓 فك التشفير</button>
+<div id="decryptedResult" class="result">النص بعد فك التشفير هيظهر هنا</div>
+<button class="secondary" onclick="copyText('decryptedResult')">📋 نسخ النص الأصلي</button>
 </div>
+
+<div class="card">
+<h2>🔄 5 - Base64 Encoder / Decoder</h2>
+<p>تحويل النص إلى Base64 والعكس. ملحوظة: Base64 ليس تشفيرًا آمنًا.</p>
+<textarea id="baseInput" placeholder="اكتب النص أو Base64 هنا"></textarea>
+<button onclick="baseEncode()">تحويل إلى Base64</button>
+<button onclick="baseDecode()">فك تحويل Base64</button>
+<div id="baseResult" class="result"></div>
+<button class="secondary" onclick="copyText('baseResult')">📋 نسخ النتيجة</button>
+</div>
+
+<div class="card">
+<h2>🌐 6 - Network Information</h2>
+<button onclick="showNetwork()">عرض معلومات الاتصال</button>
+<div id="networkResult" class="result">اضغط لعرض المعلومات المتاحة</div>
+</div>
+
+<div class="card">
+<h2>📚 اتعلم وطبّق</h2>
+<p>اتعلم أساسيات Termux وLinux وPython والأمن السيبراني.</p>
+<button onclick="location.href='/lessons'">دخول الأكاديمية التعليمية</button>
+<button class="secondary" onclick="location.href='/termux'">أوامر Termux</button>
+<button class="secondary" onclick="location.href='/cyber'">تعلم Cyber Security</button>
+<button class="secondary" onclick="location.href='/'">الصفحة الرئيسية</button>
+</div>
+
+<footer>DARK HACKERS © 2026</footer>
 
 <script>
-function generate(){
- const n=Math.max(8,Math.min(64,Number(document.getElementById('len').value)||16));
- const chars="ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%";
- const bytes=crypto.getRandomValues(new Uint8Array(n));
+function generatePassword(){
+ const length=Math.max(8,Math.min(64,Number(document.getElementById('passLength').value)||20));
+ const chars="ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%^&*_-";
+ const limit=256-(256%chars.length);
  let result="";
- for(let b of bytes) result+=chars[b%chars.length];
- document.getElementById('pass').textContent=result;
+ while(result.length<length){
+  const bytes=crypto.getRandomValues(new Uint8Array(length-result.length+10));
+  for(const b of bytes){
+   if(b<limit) result+=chars[b%chars.length];
+   if(result.length===length) break;
+  }
+ }
+ document.getElementById('generated').textContent=result;
 }
-function checkPass(){
- const p=document.getElementById('password').value;
- let s=0;
- if(p.length>=12)s++;
- if(/[A-Z]/.test(p))s++;
- if(/[a-z]/.test(p))s++;
- if(/[0-9]/.test(p))s++;
- if(/[^A-Za-z0-9]/.test(p))s++;
- document.getElementById('strength').textContent=
- p.length===0?"اكتب كلمة مرور أولاً":s<=2?"ضعيفة":s<=3?"متوسطة":"قوية حسب المعايير الأساسية";
+
+function checkStrength(){
+ const p=document.getElementById('checkPassword').value;
+ const out=document.getElementById('strengthResult');
+ if(!p){out.textContent="اكتب كلمة المرور أولاً";return;}
+ let score=0;
+ if(p.length>=12)score++;
+ if(p.length>=16)score++;
+ if(/[A-Z]/.test(p))score++;
+ if(/[a-z]/.test(p))score++;
+ if(/[0-9]/.test(p))score++;
+ if(/[^A-Za-z0-9]/.test(p))score++;
+ const common=["password","12345678","qwerty","admin","123456789"];
+ if(common.some(x=>p.toLowerCase()===x))score=0;
+ if(/(.)\1{3,}/.test(p))score=Math.max(0,score-2);
+ if(/1234|abcd|qwer/i.test(p))score=Math.max(0,score-1);
+ let level=score<=2?"ضعيفة ❌":score<=4?"متوسطة ⚠️":"قوية مبدئيًا ✅";
+ out.textContent="التقييم: "+level+"\nالطول: "+p.length+" حرف";
 }
-function encode(){
+
+function bytesToBase64(bytes){
+ let binary="";
+ for(let i=0;i<bytes.length;i++)binary+=String.fromCharCode(bytes[i]);
+ return btoa(binary);
+}
+function base64ToBytes(value){
+ const binary=atob(value);
+ const bytes=new Uint8Array(binary.length);
+ for(let i=0;i<binary.length;i++)bytes[i]=binary.charCodeAt(i);
+ return bytes;
+}
+async function deriveAESKey(password,salt){
+ const material=await crypto.subtle.importKey(
+  "raw",new TextEncoder().encode(password),"PBKDF2",false,["deriveKey"]
+ );
+ return crypto.subtle.deriveKey(
+  {name:"PBKDF2",salt:salt,iterations:310000,hash:"SHA-256"},
+  material,{name:"AES-GCM",length:256},false,["encrypt","decrypt"]
+ );
+}
+
+async function encryptText(){
+ const text=document.getElementById('plainText').value;
+ const password=document.getElementById('encryptKey').value;
+ const out=document.getElementById('encryptedResult');
+ if(!text||!password){out.textContent="اكتب النص والمفتاح السري أولاً";return;}
+ if(!crypto.subtle){out.textContent="التشفير يحتاج اتصالًا آمنًا مثل localhost أو HTTPS";return;}
+ out.textContent="جاري التشفير...";
  try{
- const t=document.getElementById('txt').value;
- document.getElementById('output').textContent=
- btoa(unescape(encodeURIComponent(t)));
- }catch(e){document.getElementById('output').textContent="تعذر التحويل";}
+  const salt=crypto.getRandomValues(new Uint8Array(16));
+  const iv=crypto.getRandomValues(new Uint8Array(12));
+  const key=await deriveAESKey(password,salt);
+  const encrypted=await crypto.subtle.encrypt(
+   {name:"AES-GCM",iv:iv},key,new TextEncoder().encode(text)
+  );
+  out.textContent="DH1."+bytesToBase64(salt)+"."+bytesToBase64(iv)+"."+bytesToBase64(new Uint8Array(encrypted));
+ }catch(e){out.textContent="حدث خطأ أثناء التشفير";}
 }
-function decode(){
+
+async function decryptText(){
+ const input=document.getElementById('cipherText').value.trim();
+ const password=document.getElementById('decryptKey').value;
+ const out=document.getElementById('decryptedResult');
+ if(!input||!password){out.textContent="اكتب النص المشفر والمفتاح أولاً";return;}
+ if(!crypto.subtle){out.textContent="فك التشفير يحتاج اتصالًا آمنًا مثل localhost أو HTTPS";return;}
+ out.textContent="جاري فك التشفير...";
  try{
- const t=document.getElementById('txt').value;
- document.getElementById('output').textContent=
- decodeURIComponent(escape(atob(t)));
- }catch(e){document.getElementById('output').textContent="النص غير صالح";}
+  const parts=input.split(".");
+  if(parts.length!==4||parts[0]!=="DH1")throw new Error("format");
+  const salt=base64ToBytes(parts[1]);
+  const iv=base64ToBytes(parts[2]);
+  const data=base64ToBytes(parts[3]);
+  const key=await deriveAESKey(password,salt);
+  const decrypted=await crypto.subtle.decrypt(
+   {name:"AES-GCM",iv:iv},key,data
+  );
+  out.textContent=new TextDecoder().decode(decrypted);
+ }catch(e){
+  out.textContent="فشل فك التشفير: تأكد من النص المشفر والمفتاح الصحيح.";
+ }
 }
-function network(){
- document.getElementById('net').textContent=
+
+function baseEncode(){
+ try{
+  const text=document.getElementById('baseInput').value;
+  const bytes=new TextEncoder().encode(text);
+  document.getElementById('baseResult').textContent=bytesToBase64(bytes);
+ }catch(e){document.getElementById('baseResult').textContent="تعذر التحويل";}
+}
+function baseDecode(){
+ try{
+  const text=document.getElementById('baseInput').value.trim();
+  document.getElementById('baseResult').textContent=
+   new TextDecoder("utf-8",{fatal:true}).decode(base64ToBytes(text));
+ }catch(e){document.getElementById('baseResult').textContent="النص غير صالح";}
+}
+async function copyText(id){
+ const value=document.getElementById(id).textContent;
+ if(!value){alert("لا توجد نتيجة لنسخها");return;}
+ try{
+  await navigator.clipboard.writeText(value);
+  alert("تم النسخ بنجاح");
+ }catch(e){alert("النسخ غير متاح في المتصفح الحالي");}
+}
+function showNetwork(){
+ const info=navigator.connection;
+ document.getElementById('networkResult').textContent=
  "حالة الاتصال: "+(navigator.onLine?"متصل":"غير متصل")+
- " | نوع الاتصال: "+(navigator.connection?.effectiveType||"غير متاح");
+ "\nنوع الاتصال: "+(info?.effectiveType||"غير متاح")+
+ "\nالسرعة التقديرية: "+(info?.downlink?info.downlink+" Mbps":"غير متاحة")+
+ "\nملاحظة: المتصفح لا يعرض عنوان IP المحلي بهذه الأداة.";
 }
 </script>
-
-<div class="card" id="pythonLab">
-<h3>🐍 PYTHON LAB</h3>
-<p>اكتب كود Python وجربه بنفسك</p>
-<textarea id="pycode" rows="8" dir="ltr" placeholder="print(10 + 20)"></textarea>
-<button onclick="runPython()">▶ تشغيل الكود</button>
-<button onclick="copyPython()">📋 نسخ الكود</button>
-<button onclick="document.getElementById('pycode').value=''">🗑 مسح الكود</button>
-<h4>النتيجة:</h4>
-<pre id="pyresult" class="result">في انتظار التشغيل...</pre>
-</div>
-
-<script>
-async function runPython(){
- const code=document.getElementById('pycode').value;
- const out=document.getElementById('pyresult');
- out.textContent='جاري التشغيل...';
- try{
-  const response=await fetch('/run-python',{
-   method:'POST',
-   headers:{'Content-Type':'application/json'},
-   body:JSON.stringify({code})
-  });
-  const data=await response.json();
-  out.textContent=data.result;
- }catch(e){
-  out.textContent='تعذر الاتصال بالسيرفر';
- }
-}
-async function copyPython(){
- const code=document.getElementById('pycode').value;
- try{
-  await navigator.clipboard.writeText(code);
-  alert('تم نسخ الكود');
- }catch(e){
-  alert('تعذر النسخ');
- }
-}
-</script>
-
 </body>
 </html>
-	
-
-<div class="card" id="termuxAcademy">
-<style>
-.lesson-btn {
- background:#260707;
- border:1px solid #bb1111;
- color:white;
- padding:14px;
- border-radius:9px;
- margin:7px 0;
- text-align:right;
- cursor:pointer;
-}
-.lesson-content {
- display:none;
- background:#0b0b0b;
- border:1px solid #8c2222;
- border-radius:10px;
- padding:15px;
- margin-top:10px;
- line-height:1.9;
-}
-.lesson-content pre {
- direction:ltr;
- text-align:left;
- color:#62ff91;
- background:#151515;
- padding:12px;
- overflow-x:auto;
- border-radius:8px;
-}
-</style>
-
-<h2 style="color:#ff2222;text-align:center">💀 TERMUX ACADEMY</h2>
-<p style="text-align:center">أكاديمية DARK HACKERS التعليمية</p>
-
-<button class="lesson-btn" onclick="openLesson(1)">📘 الدرس الأول: مقدمة Termux</button>
-<div class="lesson-content" id="lesson1">
-<h3>أهلاً يا شباب DARK HACKERS ❤️</h3>
-النهارده هنبدأ أول خطوة لينا في عالم Termux.
-أنا هشرحلكم من الصفر، وهنطبق مع بعض خطوة بخطوة.
-
-<h4>يعني إيه Termux؟</h4>
-هو تطبيق بيوفر بيئة أوامر شبيهة بلينكس على أندرويد، ونقدر نتعلم من خلاله البرمجة وإدارة الملفات.
-
-<h4>أول تطبيق عملي:</h4>
-<pre>pkg update
-pkg upgrade -y</pre>
-<p>الأوامر دي بتحدّث قوائم الحزم والبرامج المثبتة.</p>
-</div>
-
-<button class="lesson-btn" onclick="openLesson(2)">📗 الدرس الثاني: أوامر Linux</button>
-<div class="lesson-content" id="lesson2">
-<h3>يا شباب، النهارده هنتعلم أهم الأوامر.</h3>
-<pre>pwd
-ls
-whoami
-date
-clear</pre>
-<ul>
-<li>pwd: معرفة مكاننا الحالي.</li>
-<li>ls: عرض الملفات.</li>
-<li>whoami: معرفة اسم المستخدم.</li>
-<li>date: عرض التاريخ والوقت.</li>
-<li>clear: تنظيف الشاشة.</li>
-</ul>
-</div>
-
-<button class="lesson-btn" onclick="openLesson(3)">📙 الدرس الثالث: الملفات والمجلدات</button>
-<div class="lesson-content" id="lesson3">
-<h3>النهارده هنعمل أول مشروع بإيدينا.</h3>
-<pre>mkdir MyProject
-cd MyProject
-touch first.txt
-echo "Welcome to DARK HACKERS" > first.txt
-cat first.txt
-ls</pre>
-<p>كده أنشأنا مجلد وملف وكتبنا فيه رسالة وعرضنا محتواه.</p>
-</div>
-
-<button class="lesson-btn" onclick="openLesson(4)">📕 الدرس الرابع: تثبيت الحزم</button>
-<div class="lesson-content" id="lesson4">
-<h3>هنبدأ نتعلم تثبيت الأدوات.</h3>
-<pre>pkg update
-pkg install python -y
-pkg install git -y
-python --version
-git --version</pre>
-<p>ثبتنا Python وGit وتأكدنا من وجودهما.</p>
-</div>
-
-<button class="lesson-btn" onclick="openLesson(5)">🐍 الدرس الخامس: Python</button>
-<div class="lesson-content" id="lesson5">
-<h3>أول كود Python لينا!</h3>
-<pre>python
-print("DARK HACKERS")
-print(10 + 20)
-exit()</pre>
-<p>الأمر print بيعرض النصوص والنتائج على الشاشة.</p>
-</div>
-
-<button class="lesson-btn" onclick="openLesson(6)">🌐 الدرس السادس: Git وGitHub</button>
-<div class="lesson-content" id="lesson6">
-<h3>إدارة المشاريع البرمجية</h3>
-<pre>git --version
-git init
-git status</pre>
-<p>Git بيساعدنا نتابع تغييرات ملفات المشروع وننظم شغلنا.</p>
-</div>
-
-<button class="lesson-btn" onclick="openLesson(7)">🌍 الدرس السابع: أساسيات الشبكات</button>
-<div class="lesson-content" id="lesson7">
-<h3>نفهم الشبكات من البداية.</h3>
-<pre>pkg install dnsutils -y
-nslookup example.com</pre>
-<p>هنا بنتعلم الاستعلام عن معلومات DNS لنطاق تجريبي.</p>
-</div>
-
-<button class="lesson-btn" onclick="openLesson(8)">🛡️ الدرس الثامن: الحماية السيبرانية</button>
-<div class="lesson-content" id="lesson8">
-<h3>الحماية أهم من الاختراق.</h3>
-<ul>
-<li>اختيار كلمات مرور قوية.</li>
-<li>تفعيل المصادقة الثنائية.</li>
-<li>تحديث التطبيقات.</li>
-<li>التدرب داخل بيئات قانونية ومصرح بها.</li>
-</ul>
-</div>
-
-<div style="border-top:1px solid #8c2222;margin-top:18px;padding-top:12px">
-<h3 style="color:#ff3333">🔥 اختبر نفسك</h3>
-<p>إيه الأمر المستخدم لإنشاء مجلد جديد؟</p>
-<button class="lesson-btn" onclick="checkAnswer('ls')">ls</button>
-<button class="lesson-btn" onclick="checkAnswer('mkdir')">mkdir</button>
-<button class="lesson-btn" onclick="checkAnswer('pwd')">pwd</button>
-<p id="academyAnswer" class="result"></p>
-</div>
-
-<script>
-function openLesson(n){
- const box=document.getElementById('lesson'+n);
- box.style.display=box.style.display==='block'?'none':'block';
-}
-function checkAnswer(answer){
- document.getElementById('academyAnswer').textContent=
- answer==='mkdir'?'✅ ممتاز! إجابة صحيحة يا بطل.':'❌ حاول تاني يا بطل.';
-}
-</script>
-</div>
-

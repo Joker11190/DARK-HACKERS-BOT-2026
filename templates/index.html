@@ -2,98 +2,164 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DARK HACKERS</title>
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080b0a">
+<title>DARK HACKERS | Dashboard</title>
 <style>
 *{box-sizing:border-box}
-body{
- margin:0;
- background:#080808;
- color:white;
- font-family:Arial,sans-serif;
+:root{--red:#ff303b;--green:#35ff91;--bg:#080b0a;--panel:#111715}
+body{margin:0;background:var(--bg);color:#eee;font-family:Arial,sans-serif}
+a{text-decoration:none;color:inherit}
+.topbar{
+ position:sticky;top:0;z-index:5;background:#0c100f;
+ border-bottom:1px solid #26342d;padding:15px 5%;
+ display:flex;align-items:center;justify-content:space-between
 }
-header{
- background:#160707;
- border-bottom:2px solid #e00000;
- padding:25px 15px;
- text-align:center;
+.logo{font-size:21px;font-weight:bold;color:var(--red)}
+.online{font-size:12px;color:var(--green)}
+.layout{display:flex;max-width:1400px;margin:auto;min-height:90vh}
+.sidebar{
+ width:230px;flex-shrink:0;background:#0c100f;
+ border-left:1px solid #26342d;padding:22px 14px
 }
-.logo{
- font-size:35px;
- color:#ff1616;
- font-weight:bold;
- text-shadow:0 0 15px red;
+.side-title{color:#777;font-size:12px;margin:15px 10px}
+.nav{
+ display:block;padding:13px;margin:7px 0;border-radius:9px;
+ color:#bbb;transition:.2s
 }
-header p{color:#aaa}
-.container{padding:20px}
-h2{color:#ff2929}
-.card{
- background:#151515;
- border:1px solid #651010;
- border-radius:12px;
- padding:18px;
- margin:15px 0;
- box-shadow:0 0 10px #300000;
+.nav:hover,.nav.active{background:#251113;color:var(--red);border-right:3px solid var(--red)}
+.content{flex:1;padding:25px;min-width:0}
+.welcome{
+ padding:27px;border:1px solid #293b30;border-radius:16px;
+ background:linear-gradient(120deg,#1c1012,#0c2117);
+ position:relative;overflow:hidden
 }
-button{
- width:100%;
- padding:13px;
- background:#b00000;
- border:0;
- border-radius:8px;
- color:white;
- font-size:16px;
- font-weight:bold;
- margin-top:12px;
+.welcome h1{font-size:27px;margin:0 0 10px}
+.welcome h1 span{color:var(--red)}
+.welcome p{color:#aaa;line-height:1.9}
+.tag{color:var(--green);font-size:12px}
+.section-title{margin:28px 0 15px;font-size:19px;color:var(--green)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.stat,.card,.terminal{
+ background:var(--panel);border:1px solid #29352f;
+ border-radius:13px;padding:18px
 }
-button:active{background:#ff2222}
-footer{
- text-align:center;
- padding:25px;
- color:#777;
+.stat small{color:#888}
+.stat strong{display:block;font-size:25px;margin-top:8px;color:var(--green)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.card{transition:.25s}
+.card:hover{border-color:var(--green);transform:translateY(-3px)}
+.card .icon{font-size:30px}
+.card h3{color:var(--red);margin:10px 0}
+.card p{font-size:14px;color:#aaa;line-height:1.8;min-height:48px}
+.btn{
+ display:block;text-align:center;padding:11px;margin-top:12px;
+ border-radius:8px;background:#291114;color:white;font-weight:bold
+}
+.btn:hover{background:#17452c;color:var(--green)}
+.terminal{
+ background:#050b08;border-color:#24583a;
+ direction:ltr;text-align:left;font-family:monospace;
+ color:var(--green);line-height:2;overflow-wrap:anywhere
+}
+.terminal .red{color:var(--red)}
+footer{text-align:center;color:#666;padding:25px;border-top:1px solid #202b25}
+@media(max-width:720px){
+ .layout{display:block}
+ .sidebar{width:100%;padding:8px;display:flex;overflow-x:auto;border-left:0;border-bottom:1px solid #26342d}
+ .side-title{display:none}
+ .nav{white-space:nowrap;margin:3px;padding:10px;font-size:13px}
+ .content{padding:15px}
+ .stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+ .stat{padding:11px}
+ .stat strong{font-size:19px}
+ .stat small{font-size:10px}
+ .grid{grid-template-columns:1fr}
+ .welcome h1{font-size:22px}
 }
 </style>
 </head>
-
 <body>
 
-<header>
-<div class="logo">💀 DARK HACKERS</div>
-<p>WELCOME TO THE DARK WORLD</p>
+<header class="topbar">
+ <div class="logo">💀 DARK HACKERS</div>
+ <div class="online">● SYSTEM ONLINE</div>
 </header>
 
-<div class="container">
+<div class="layout">
+ <aside class="sidebar">
+  <div class="side-title">MAIN MENU</div>
+  <a class="nav active" href="/">⌂ الرئيسية</a>
+  <a class="nav" href="/tools">⚙️ مركز الأدوات</a>
+  <a class="nav" href="/termux">⌨️ Termux</a>
+  <a class="nav" href="/cyber">🛡️ Cyber Security</a>
+  <a class="nav" href="/lessons">📚 الأكاديمية</a>
+  <div class="side-title">INFORMATION</div>
+  <a class="nav" href="#terminal">💻 النظام</a>
+ </aside>
 
-<h2>الرئيسية</h2>
+ <main class="content">
+  <section class="welcome">
+   <div class="tag">DASHBOARD / HOME</div>
+   <h1>مرحباً بك في <span>DARK HACKERS</span></h1>
+   <p>منصتك لتعلم البرمجة وTermux والأمن السيبراني.
+   ابدأ من الصفر، طبّق بنفسك، وطور مهاراتك خطوة بخطوة.</p>
+  </section>
 
-<div class="card">
-<h3>🔥 مرحباً بك في DARK HACKERS</h3>
-<p>منصة تعليمية لأدوات Termux والأمن السيبراني.</p>
-</div>
+  <h2 class="section-title">📊 نظرة عامة على المنصة</h2>
+  <section class="stats">
+   <div class="stat"><small>الأقسام</small><strong>05</strong></div>
+   <div class="stat"><small>الأدوات</small><strong>06</strong></div>
+   <div class="stat"><small>التعلم</small><strong>24/7</strong></div>
+  </section>
 
-<div class="card">
-<h3>⌨️ أدوات Termux</h3>
-<p>تعلم الأوامر الأساسية خطوة بخطوة.</p>
-<button onclick="alert('قريباً: مكتبة أوامر Termux')">دخول الأدوات</button>
-</div>
+  <h2 class="section-title">⚡ أقسام المنصة</h2>
+  <section class="grid">
+   <article class="card">
+    <div class="icon">🔐</div>
+    <h3>مركز الأدوات</h3>
+    <p>إنشاء كلمات المرور وفحص قوتها والتشفير وفك التشفير وأدوات تعليمية.</p>
+    <a class="btn" href="/tools">فتح مركز الأدوات ←</a>
+   </article>
 
-<div class="card">
-<h3>🛡️ Cyber Security</h3>
-<p>تعلم أساسيات حماية الأجهزة والشبكات.</p>
-<button onclick="alert('قريباً: دروس الحماية')">دخول القسم</button>
-</div>
+   <article class="card">
+    <div class="icon">⌨️</div>
+    <h3>Termux Command</h3>
+    <p>تعلم أوامر Termux وإدارة الملفات وتثبيت الحزم والتطبيق العملي.</p>
+    <a class="btn" href="/termux">دخول Termux ←</a>
+   </article>
 
-<div class="card">
-<h3>📚 الدروس التعليمية</h3>
-<p>ابدأ رحلتك من الصفر حتى الاحتراف.</p>
-<button onclick="alert('قريباً: الدروس')">عرض الدروس</button>
-</div>
+   <article class="card">
+    <div class="icon">🛡️</div>
+    <h3>Cyber Security</h3>
+    <p>مفاهيم الحماية الرقمية وأمن الشبكات وكلمات المرور والتصيد.</p>
+    <a class="btn" href="/cyber">استكشاف الحماية ←</a>
+   </article>
 
+   <article class="card">
+    <div class="icon">📚</div>
+    <h3>أكاديمية DARK</h3>
+    <p>دروس عملية في Linux وPython والشبكات والأمن السيبراني.</p>
+    <a class="btn" href="/lessons">ابدأ التعلم ←</a>
+   </article>
+  </section>
+
+  <h2 class="section-title" id="terminal">💻 SYSTEM TERMINAL</h2>
+  <section class="terminal">
+   <div><span class="red">root@dark-hackers</span>:~# system_status</div>
+   <div>[+] PLATFORM: DARK HACKERS</div>
+   <div>[+] LEARNING MODE: ACTIVE</div>
+   <div>[+] SECURITY: EDUCATIONAL</div>
+   <div>[+] STATUS: ONLINE</div>
+   <div><span class="red">root@dark-hackers</span>:~# _</div>
+  </section>
+ </main>
 </div>
 
 <footer>
-DARK HACKERS © 2026
+ <b style="color:#ff303b">💀 DARK HACKERS</b><br>
+ LEARN • BUILD • PROTECT<br>
+ © 2026
 </footer>
 
 </body>
